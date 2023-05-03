@@ -42,10 +42,10 @@ Server is listening to [localhost:7878](http://localhost:7878/). The Hospital AP
 | -------- | ------ | ----------- |
 | `api/patients/register` | POST | Register new patient |
 | `api/patients/:id/create_report` | POST | Create report for the patient |
-| `api/patients/:id/all_report` | POST | List all the reports of a patient oldest to latest |
+| `api/patients/:id/all_report` | GET | List all the reports of a patient oldest to latest |
 
 ### Report
 
 | Endpoint | Method | Description |
 | -------- | ------ | ----------- |
-| `api/reports/:status` | POST | List all the reports of all the patients filtered by a specific status |
+| `api/reports/:status` | GET | List all the reports of all the patients filtered by a specific status |
