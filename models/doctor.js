@@ -3,9 +3,10 @@ const bcrypt = require('../config/bcrypt');
 
 const doctorSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
+      unique: true,
     },
     mobile: {
       type: String,

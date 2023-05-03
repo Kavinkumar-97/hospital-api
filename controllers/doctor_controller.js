@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports.register = async (req, res) => {
   try {
-    const { name, password, confirmPassword, mobile } = req.body;
+    const { username, password, confirmPassword, mobile } = req.body;
 
     if (password !== confirmPassword) {
       return res
@@ -11,15 +11,15 @@ module.exports.register = async (req, res) => {
         .json({ message: 'Password and confirm password are not the same' });
     }
 
-    let doctor = await Doctor.findOne({ mobile: mobile });
+    let doctor = await Doctor.findOne({ username });
 
     if (doctor) {
       return res
         .status(409)
-        .json({ message: 'Mobile number is already registered' });
+        .json({ message: 'Username is already registered' });
     }
 
-    doctor = await Doctor.create({ name, mobile, password });
+    doctor = await Doctor.create({ username, mobile, password });
 
     res.status(201).json({ message: 'Registered Successfully', data: doctor });
   } catch (error) {
@@ -30,9 +30,9 @@ module.exports.register = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
-    const { mobile, password } = req.body;
+    const { username, password } = req.body;
 
-    const doctor = await Doctor.findOne({ mobile });
+    const doctor = await Doctor.findOne({ username });
 
     if (!doctor) {
       return res.status(404).json({ message: 'User not found' });
