@@ -31,9 +31,19 @@ Server is listening to [localhost:7878](http://localhost:7878/). The Hospital AP
 
 | Endpoint | Method | Description |
 | -------- | ------ | ----------- |
-| `api/doctors/register` | POST | Register doctor using username, mobile number and password |
-| `api/doctors/login` | POST | Log in doctor using username and password. Return JWT Token. That need to passed as `Bearer Token` in header for patient and reports api |
+| `api/doctors/register` | POST | Register doctor |
+| `api/doctors/login` | POST | Log in doctor |
 | `api/patients/register` | POST | Register new patient |
-| `api/patients/:id/create_report` | POST | Create report for the patient |
-| `api/patients/:id/all_report` | GET | List all the reports of a patient oldest to latest |
+| `api/patients/:id/create_report` | POST | Create a new report |
+| `api/patients/:id/all_report` | GET | Get all the reports of a patient oldest to latest |
 | `api/reports/:status` | GET | List all the reports of all the patients filtered by a specific status |
+
+## Authentication
+
+The Hospital API uses JSON Web Tokens (JWTs) for authentication and authorization. To access the API endpoints, clients must include a JWT in the Authorization header of their requests in the following format:
+
+```text
+Authorization: Bearer <token>
+```
+
+To obtain a JWT, clients must first register an account using the `/api/doctors/register` endpoint, and then log in using the `/api/doctors/login` endpoint. The login endpoint returns a JWT that can be used to access the protected endpoints.
